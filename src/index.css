@@ -47,6 +47,8 @@ ol, ul {
 
 .game-info {
   margin-left: 20px;
+  text-align: center;
+  margin: 2em;
 }
 
 .winner {

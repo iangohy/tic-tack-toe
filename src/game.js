@@ -66,14 +66,24 @@ export class Game extends React.Component {
   }
 
   jumpTo(step) {
-    this.setState({
-      stepNumber: step,
-      xIsNext: (step % 2) === 0,
-    });
+    this.setState((prevState) => {
+      return{
+        stepNumber: step,
+        xIsNext: (step % 2) === 0,
+        history: prevState.history.slice(0, step + 1),
+    }});
+  }
+
+  restart() {
+    this.jumpTo(0)
   }
 
   undo() {
-    this.jumpTo(this.state.history.length - 2)
+    if (this.state.stepNumber === 0) {
+      return
+    } else {
+      this.jumpTo(this.state.history.length - 2)
+    }
   }
 
   render() {
@@ -101,6 +111,7 @@ export class Game extends React.Component {
         <div className="game-info">
           {status}
           <button onClick={() => this.undo()}>Undo last move</button>
+          <button onClick={() => this.restart()}>Restart game</button>
         </div>
       </div>
     );
