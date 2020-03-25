@@ -32,6 +32,10 @@ ol, ul {
   width: 68px;
 }
 
+.board-row{
+  min-width: 204px;
+}
+
 .square:focus {
   outline: none;
 }
